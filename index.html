@@ -99,7 +99,6 @@
         let PresetButton = document.createElement("button");
         PresetButton.innerHTML = "Use preset"
         div.appendChild(PresetButton);
-        // PresetButton.style.border = border
         PresetButton.style.borderRadius = borderRad
         PresetButton.style.backgroundColor = color1
         PresetButton.addEventListener("click", function(){usePreset()})
@@ -129,18 +128,15 @@
 
         function update(){
             let terms = code.split("▥");
-            // console.log(terms[0].split("⊕"))
             
             let arr = []
 
             for(let i = 0; i < terms.length; i++){
-                // console.log(i)
                 let term = [];
                 term.push(terms[i].split("⊕")[0])
                 term.push(terms[i].split("⊕")[1])
                 arr.push(term);
             }
-            // console.log(arr)
 
             for(let i = 0; i < arr.length; i++){
                 // Index is stored in backing for convinience
@@ -168,14 +164,6 @@
                 question.style.top = spacing + "px";
 
                 question.addEventListener("mouseleave", function(){
-                    // // console.log(question.value);
-                    // code = ""
-                    // code = questions[0].value+ "⊕" + answers[0].value;
-                    // for(let i = 1; i < arr.length; i++){
-                    //     // ⊕▥
-                    //     code = code + "▥" + questions[i].value + "⊕" + answers[i].value
-                    // }
-                    // // console.log(code)
                 })
 
                 
@@ -199,17 +187,9 @@
                         code = code + "▥" + mainArr[i][0] + "⊕" + mainArr[i][1]
 
                     }
-                    // console.log(code);
                 })
 
                 answer.addEventListener("mouseleave", function(){
-                    // code = ""
-                    // code = questions[0].value+ "⊕" + answers[0].value;
-                    // for(let i = 1; i < arr.length; i++){
-                    //     // ⊕▥
-                    //     code = code + "▥" + questions[i].value + "⊕" + answers[i].value
-                    // }
-                    // console.log(code)
                 })
 
                 let deleter = document.createElement("img")
@@ -221,25 +201,16 @@
                 deleter.style.top = spacing-25 + "px";
                 div.appendChild(deleter);
                 deleter.addEventListener("click", function(){
-                    // questions = []
-                    // answers = []
                     mainArr = [];
 
-                    // console.log(code)
-                    // console.log("Hi");
-                    // console.log(backing.index);
-                    // console.log(terms);
                     terms.splice(backing.index, 1);
                     code = ""
                     code = code + terms[0];
                     for(let i = 1; i < terms.length; i++){
                         code = code + "▥" + terms[i];
                     }
-                    // console.log(code);
                     main.removeChild(div);
                     makeTerms();
-                    // console.log(div.querySelectorAll("div"));
-                    // console.log(code);
                 })
                 let placeholder = []
                 placeholder.push(question.value);
@@ -263,9 +234,6 @@
             div.appendChild(termMaker);
             termMaker.addEventListener("click", function(){
                 mainArr = []
-                // code = ""
-                // console.log(code)
-                // console.log(questions);
                 code = code + "▥⊕";
                 main.removeChild(div);
                 makeTerms();
@@ -281,13 +249,6 @@
             flashcards.style.backgroundColor = color1
             main.appendChild(flashcards);
             flashcards.addEventListener("click", function(){
-                    // code = ""
-                    // code = questions[0].value+ "⊕" + answers[0].value;
-                    // for(let i = 1; i < arr.length; i++){
-                    //     // ⊕▥
-                    //     code = code + "▥" + questions[i].value + "⊕" + answers[i].value
-                    // }
-                    // console.log(code)
                 main.removeChild(div);
                 Makeflashcards()
                 main.removeChild(flashcards);
@@ -304,13 +265,6 @@
             learn.style.borderRadius = borderRad;
             main.appendChild(learn);
             learn.addEventListener("click", function(){
-                    // code = ""
-                    // code = questions[0].value+ "⊕" + answers[0].value;
-                    // for(let i = 1; i < arr.length; i++){
-                    //     // ⊕▥
-                    //     code = code + "▥" + questions[i].value + "⊕" + answers[i].value
-                    // }
-                    // // console.log(code)
                 main.removeChild(div);
                 Makelearn()
                 main.removeChild(learn);
@@ -329,18 +283,15 @@
 
         let currentCard = 0;
         let terms = code.split("▥");
-        // console.log(terms[0].split("⊕"))
         
         let arr = []
 
         for(let i = 0; i < terms.length; i++){
-            // console.log(i)
             let term = [];
             term.push(terms[i].split("⊕")[0])
             term.push(terms[i].split("⊕")[1])
             arr.push(term);
         }
-        // console.log(arr);
         function nextCard(){
             let card = document.createElement("div")
             card.style.position = "absolute";
@@ -366,17 +317,11 @@
             current.innerHTML = currentCard+1 + "/" + mainArr.length
             div.appendChild(current);
 
-            // console.log(window.getComputedStyle(text).getPropertyValue("width"));
-            // console.log(window.getComputedStyle(text).getPropertyValue("left"));
-            // console.log(window.getComputedStyle(card).getPropertyValue("width"));
-            // console.log(parseInt(text.style.left) + (parseInt(window.getComputedStyle(text).getPropertyValue("width")))+"px");
             text.style.left = parseInt(text.style.left)+ (parseInt(window.getComputedStyle(card).getPropertyValue("width"))/2) - (parseInt(window.getComputedStyle(text).getPropertyValue("width"))/2)+"px"
-            // console.log(parseInt(text.style.left)+ (parseInt(window.getComputedStyle(card).getPropertyValue("width"))/2) - (parseInt(window.getComputedStyle(text).getPropertyValue("width"))/2)+"px")
             text.style.top = parseInt(text.style.top)+ (parseInt(window.getComputedStyle(card).getPropertyValue("height"))/2) - (parseInt(window.getComputedStyle(text).getPropertyValue("height"))/2)+"px";
             card.type = "question"
             let display = document.createElement("h2");
             display.innerHTML = "Term";
-            // display.style.position = "absolute";
             display.style.textAlign = "center"
             card.appendChild(display)
             card.addEventListener("click", function(){
@@ -418,7 +363,6 @@
             div.appendChild(left);
 
             right.addEventListener("click", function(){
-                // console.log("Right!");
                 div.removeChild(card);
                 div.removeChild(current);
                 currentCard += 1;
@@ -427,7 +371,6 @@
 
             })
             left.addEventListener("click", function(){
-                // console.log("Left!");
                 div.removeChild(card);
                 div.removeChild(current)
                 currentCard += -1;
@@ -476,23 +419,19 @@
         main.appendChild(div);
 
         let terms = code.split("▥");
-        // console.log(terms[0].split("⊕"))
         
         let arr = []
         let known = []
         let unknown = []
 
         for(let i = 0; i < terms.length; i++){
-            // console.log(i)
             let term = [];
             term.push(terms[i].split("⊕")[0])
             term.push(terms[i].split("⊕")[1])
             arr.push(term);
         }
-        // console.log(arr)
         function learnTerm(){
             if(arr.length == 0){
-                // console.log("DONE!")
                 let correct = document.createElement("div");
                 correct.style.position = "absolute";
                 correct.style.width = "40%";
@@ -562,7 +501,6 @@
                     unknown = []
 
                     if(arr.length == 0){
-                        // console.log("Done!");
                         let card = document.createElement("div");
                         card.style.position = "absolute";
                         card.style.width = "50%";
@@ -601,13 +539,8 @@
                 
             }else{
                 let randNum = Math.round(Math.random()*(arr.length-1))
-                // console.log(arr[randNum]);
                 let term = arr[randNum]
                 arr.splice(randNum, 1);
-                // console.log(arr)
-                // let Q = term[0]
-                // let A = term[1]
-                // console.log(term);
 
                 let percent = document.createElement("h1")
                 percent.innerHTML = known.length + unknown.length + 1 + "/" + mainArr.length
@@ -654,21 +587,17 @@
                     console.log(term[1])
                     if(toggled == false){
                         if(answerBox.value.length <= 5){
-                            // console.log("oooooooooooooooooooooo")
                             if(answerBox.value == term[1]){
                                 known.push(term);
-                                // console.log(known.push(term));
                                 submit.style.backgroundColor = "rgb(83, 220, 20)";
                                 setTimeout(() => {
                                     div.removeChild(card);
                                     div.removeChild(percent);
-                                    // console.log(known);
                                     learnTerm()
                                 }, 1000);
                             }else{
                                 submit.style.backgroundColor = "rgb(220, 73, 20";
                                 unknown.push(term);
-                                // console.log(unknown);
                                 setTimeout(() => {
                                     card.removeChild(submit);
                                     card.removeChild(text);
@@ -709,33 +638,24 @@
                             for(let i = 0; i < input.length; i++){
                                 inputAsArr.push(input[i])
                             }
-                            // console.log(inputAsArr);
                             for(let i = 0; i < input.length; i++){
                                 if(word.indexOf(input[i]) != -1){
-                                    // console.log(input[i])
                                     wordAsArr.splice(wordAsArr.indexOf(input[i]), 1)
                                     inputAsArr.splice(inputAsArr.indexOf(input[i]), 1)
                                 }
                             }
                             let accuracy = wordAsArr.length+inputAsArr.length;
-                            // console.log(accuracy);
-                            // console.log(accuracy / wordToMatch.length)
                             if(accuracy < 3){
-                                // console.log('Good')
-                                // console.log("Meow");
                                 known.push(term);
                                 submit.style.backgroundColor = "rgb(83, 220, 20)";
                                 setTimeout(() => {
                                     div.removeChild(card);
                                     div.removeChild(percent);
-                                    // console.log(known);
                                     learnTerm()
                                 }, 1000);
                             }else{
-                                // console.log("Woof");
                                 submit.style.backgroundColor = "rgb(220, 73, 20";
                                 unknown.push(term);
-                                // console.log(unknown);
                                 setTimeout(() => {
                                     card.removeChild(submit);
                                     card.removeChild(text);
@@ -769,18 +689,15 @@
                     }else{
                         if(answerBox.value == term[1]){
                             known.push(term);
-                            // console.log(known.push(term));
                             submit.style.backgroundColor = "rgb(83, 220, 20)";
                             setTimeout(() => {
                                 div.removeChild(card);
                                 div.removeChild(percent);
-                                // console.log(known);
                                 learnTerm()
                             }, 1000);
                         }else{
                             submit.style.backgroundColor = "rgb(220, 73, 20";
                             unknown.push(term);
-                            // console.log(unknown);
                             setTimeout(() => {
                                 card.removeChild(submit);
                                 card.removeChild(text);
@@ -810,7 +727,7 @@
                             }, 1000);
                         }
                     }    
-                })//////////////
+                })
             }
         }
         learnTerm()
