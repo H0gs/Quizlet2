@@ -74,6 +74,27 @@
         }
     })
 
+    let swap = document.createElement("button");
+    swap.innerHTML = "Swap questions and answers: ❎"
+    swap.style.position = "absolute";
+    swap.style.left = "85%";
+    swap.style.top = "55%";
+    swap.style.backgroundColor = color1
+    swap.style.border = border;
+    swap.style.borderRadius = borderRad;
+    let swapped = false
+    main.appendChild(swap);
+    swap.addEventListener("click", function(){
+        // console.log("UwU");
+        if(swapped == false){
+            swapped = true
+            swap.innerHTML = "Swap questions and answers: ✅"
+        }else{
+            swapped = false
+            swap.innerHTML = "Swap questions and answers: ❎"
+        }
+    })
+
 
     let codeGetter = document.createElement("button");
     codeGetter.innerHTML = "Get code!";
@@ -546,6 +567,13 @@
             }else{
                 let randNum = Math.round(Math.random()*(arr.length-1))
                 let term = arr[randNum]
+                let ans = term[1]
+                let ques = term[0]
+                if(swapped == true){
+                    placeholder = ans
+                    ans = ques
+                    ques = placeholder
+                }
                 arr.splice(randNum, 1);
 
                 let percent = document.createElement("h1")
@@ -566,7 +594,7 @@
 
                 let text = document.createElement("h1");
                 text.style.textAlign = "center";
-                text.innerHTML = term[0];
+                text.innerHTML = ques;
                 card.appendChild(text);
 
                 let answerBox = document.createElement("textarea");
@@ -590,10 +618,10 @@
                 card.appendChild(submit);
 
                 submit.addEventListener("click", function(){
-                    console.log(term[1])
+                    console.log(ans)
                     if(toggled == false){
                         if(answerBox.value.length <= 5){
-                            if(answerBox.value == term[1]){
+                            if(answerBox.value == ans){
                                 known.push(term);
                                 submit.style.backgroundColor = "rgb(83, 220, 20)";
                                 setTimeout(() => {
@@ -611,7 +639,7 @@
                                     card.removeChild(answerBox);
 
                                     let correction = document.createElement("h1");
-                                    correction.innerHTML = "Answer: " + "<h3></h3>" + term[1] + "<h6></h6>"+"<h5>You answered: " + notCorrect+"</h5>";
+                                    correction.innerHTML = "Answer: " + "<h3></h3>" + ans + "<h6></h6>"+"<h5>You answered: " + notCorrect+"</h5>";
                                     correction.style.textAlign = "center";
                                     card.appendChild(correction);
 
@@ -633,7 +661,7 @@
                                 }, 1000);
                             }
                         }else{
-                        const wordToMatch = term[1]
+                        const wordToMatch = ans
                             let word = wordToMatch; //"Hello!"
                             let wordAsArr = []
                             for(let i = 0; i < word.length; i++){
@@ -669,7 +697,7 @@
                                     card.removeChild(answerBox);
 
                                     let correction = document.createElement("h1");
-                                    correction.innerHTML = "Answer: " + "<h3></h3>" + term[1] + "<h6></h6>"+"<h5>You answered: " + notCorrect+"</h5>";
+                                    correction.innerHTML = "Answer: " + "<h3></h3>" + ans + "<h6></h6>"+"<h5>You answered: " + notCorrect+"</h5>";
                                     correction.style.textAlign = "center";
                                     card.appendChild(correction);
 
@@ -693,7 +721,7 @@
                         }
 
                     }else{
-                        if(answerBox.value == term[1]){
+                        if(answerBox.value == ans){
                             known.push(term);
                             submit.style.backgroundColor = "rgb(83, 220, 20)";
                             setTimeout(() => {
@@ -711,7 +739,7 @@
                                 card.removeChild(answerBox);
 
                                 let correction = document.createElement("h1");
-                                correction.innerHTML = "Answer: " + "<h3></h3>" + term[1] + "<h6></h6>"+"<h5>You answered: " + notCorrect+"</h5>";
+                                correction.innerHTML = "Answer: " + "<h3></h3>" + ans + "<h6></h6>"+"<h5>You answered: " + notCorrect+"</h5>";
                                 correction.style.textAlign = "center";
                                 card.appendChild(correction);
 
